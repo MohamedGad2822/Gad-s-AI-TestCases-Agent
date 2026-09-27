@@ -1,0 +1,202 @@
+{
+  "projectNumber": 24,
+  "testCases": [
+    {
+      "id": "CAT-001",
+      "title": "Categories | 1- Display 5-Star Olympics package category on package card (Positive)(P1)",
+      "module": "Categories",
+      "type": "Positive",
+      "priority": "P1",
+      "preconditions": "User is on the 'Select Package' screen with search results returned.",
+      "steps": [
+        "Locate the package card for '5 Stars ✨ Galleria Hotel arrival 12 Oct'.",
+        "Inspect the metadata line under hotel information."
+      ],
+      "expected": "The metadata line displays 'Category  Olympics 5-Star ⭐⭐⭐⭐⭐' alongside 'Night  6'."
+    },
+    {
+      "id": "CAT-002",
+      "title": "Categories | 2- Display 4-Star Olympics package category on package card (Positive)(P1)",
+      "module": "Categories",
+      "type": "Positive",
+      "priority": "P1",
+      "preconditions": "User is on the 'Select Package' screen with 14 packages loaded.",
+      "steps": [
+        "Locate the package card for '4 Stars ✨ Novotel Hotel arrival 12 Oct'.",
+        "Inspect the metadata line below hotel name."
+      ],
+      "expected": "The card displays 'Category  Olympics 4-Star ⭐⭐⭐⭐' alongside 'Night  6'."
+    },
+    {
+      "id": "CAT-003",
+      "title": "Categories | 3- Display category alignment between package title and category metadata (Validation)(P2)",
+      "module": "Categories",
+      "type": "Validation",
+      "priority": "P2",
+      "preconditions": "User is on the 'Select Package' screen viewing live packages.",
+      "steps": [
+        "Read the title of the first card ('5 Stars ✨ Galleria Hotel arrival 12 Oct').",
+        "Compare the star rating in the title with the 'Category' line value."
+      ],
+      "expected": "The category line displays 'Olympics 5-Star ⭐⭐⭐⭐⭐ Hotels' matching the 5-star title classification."
+    },
+    {
+      "id": "CAT-004",
+      "title": "Categories | 4- Category display on dimmed or unavailable package card (Positive)(P2)",
+      "module": "Categories",
+      "type": "Positive",
+      "priority": "P2",
+      "preconditions": "User searches with party size of 5 guests and 2 rooms, returning incompatible packages.",
+      "steps": [
+        "Locate the dimmed card for '3 Stars ✨ ibis Hotel arrival 12 Oct'.",
+        "Inspect the package title and hotel details block."
+      ],
+      "expected": "The package card displays the 3-star rating classification in the title while showing capacity warning message."
+    },
+    {
+      "id": "CAT-005",
+      "title": "Categories | 5- Render star unicode icons in category label across different viewports (Edge case)(P3)",
+      "module": "Categories",
+      "type": "Edge case",
+      "priority": "P3",
+      "preconditions": "User accesses 'Select Package' on a mobile viewport (width <= 390px).",
+      "steps": [
+        "Resize browser viewport to 390px.",
+        "Inspect the category rating stars on each visible package card."
+      ],
+      "expected": "All five star icons ('⭐⭐⭐⭐⭐') render without clipping, wrapping mid-symbol, or encoding corruption."
+    },
+    {
+      "id": "CAT-006",
+      "title": "Categories | 6- Package record with missing category attribute (Edge case)(P3)",
+      "module": "Categories",
+      "type": "Edge case",
+      "priority": "P3",
+      "preconditions": "A package exists in the database with a null or empty category string.",
+      "steps": [
+        "Search packages and locate the card with null category.",
+        "Observe the card metadata row where Category is normally rendered."
+      ],
+      "expected": "TBD - confirm with dev whether the Category label is omitted entirely or falls back to a default unassigned state."
+    },
+    {
+      "id": "CAT-007",
+      "title": "Categories | 7- Category persistence from package list to package details header (Positive)(P1)",
+      "module": "Categories",
+      "type": "Positive",
+      "priority": "P1",
+      "preconditions": "User is on 'Select Package' screen viewing '5 Stars ✨ Galleria Hotel arrival 12 Oct'.",
+      "steps": [
+        "Click 'Select Package' on the 5-Star Galleria Hotel package card.",
+        "Observe the metadata summary line in the Package Details header block."
+      ],
+      "expected": "The header metadata displays 'Category Olympics 5-Star ⭐⭐⭐⭐⭐' alongside passenger count and travel dates."
+    },
+    {
+      "id": "CAT-008",
+      "title": "Categories | 8- Category persistence for 4-Star package details (Positive)(P2)",
+      "module": "Categories",
+      "type": "Positive",
+      "priority": "P2",
+      "preconditions": "User is on 'Select Package' screen.",
+      "steps": [
+        "Click 'Select Package' on '4 Stars ✨ Novotel Hotel arrival 12 Oct'.",
+        "Inspect the header metadata block on the loaded Package Details page."
+      ],
+      "expected": "The header metadata reflects 'Category Olympics 4-Star ⭐⭐⭐⭐'."
+    },
+    {
+      "id": "CAT-009",
+      "title": "Categories | 9- Display distinct room category groupings in room selector (Positive)(P1)",
+      "module": "Categories",
+      "type": "Positive",
+      "priority": "P1",
+      "preconditions": "User is on Package Details page for Galleria Hotel with room selector visible.",
+      "steps": [
+        "Navigate to the 'Choose your rooms' section.",
+        "Verify each room category block heading."
+      ],
+      "expected": "Three distinct room category sections are displayed: 'Double Classic Room', 'Triple Classic Room', and 'Family Suite'."
+    },
+    {
+      "id": "CAT-010",
+      "title": "Categories | 10- Display bed configuration tags for each room category (Positive)(P2)",
+      "module": "Categories",
+      "type": "Positive",
+      "priority": "P2",
+      "preconditions": "User is viewing the room combination component on Package Details.",
+      "steps": [
+        "Inspect the bed chips under 'Double Classic Room'.",
+        "Inspect the bed chips under 'Triple Classic Room'.",
+        "Inspect the bed chips under 'Family Suite'."
+      ],
+      "expected": "Double Classic displays 'Queen Bed', 'Twin Beds', 'King Bed'; Triple Classic displays 'Twin Beds', 'Sofa Bed'; Family Suite displays 'King Bed', 'Sofa Bed', 'Bunk Bed'."
+    },
+    {
+      "id": "CAT-011",
+      "title": "Categories | 11- Access room details modal or panel per room category (Positive)(P2)",
+      "module": "Categories",
+      "type": "Positive",
+      "priority": "P2",
+      "preconditions": "User is viewing room category headers in 'Choose your rooms'.",
+      "steps": [
+        "Click 'See room details' on the 'Double Classic Room' category header."
+      ],
+      "expected": "Detailed specification for Double Classic Room opens or expands in view."
+    },
+    {
+      "id": "CAT-012",
+      "title": "Categories | 12- Single room category package presentation (Edge case)(P3)",
+      "module": "Categories",
+      "type": "Edge case",
+      "priority": "P3",
+      "preconditions": "A package is loaded that only contains one room category.",
+      "steps": [
+        "Open a package that has only a single room type inventory.",
+        "Observe the 'Choose your rooms' section."
+      ],
+      "expected": "A single room table is displayed with the stepper preset to the required count without an arrangement chooser."
+    },
+    {
+      "id": "CAT-013",
+      "title": "Categories | 13- Filter room inventory by Room Type category (Positive)(P2)",
+      "module": "Categories",
+      "type": "Positive",
+      "priority": "P2",
+      "preconditions": "User is on Package Details with 'Filter: Board Type · Policy · Room Type' visible above room tables.",
+      "steps": [
+        "Click on the 'Room Type' filter dropdown.",
+        "Select 'Family Suite' only.",
+        "Observe the room tables displayed."
+      ],
+      "expected": "Only the 'Family Suite' room category table is displayed; 'Double Classic Room' and 'Triple Classic Room' are hidden."
+    },
+    {
+      "id": "CAT-014",
+      "title": "Categories | 14- Filter package search results by package star category (Positive)(P2)",
+      "module": "Categories",
+      "type": "Positive",
+      "priority": "P2",
+      "preconditions": "User is on 'Select Package' screen with 14 packages displayed.",
+      "steps": [
+        "Locate category filter control on the search results screen.",
+        "Select 'Olympics 5-Star Hotels'."
+      ],
+      "expected": "TBD - confirm with dev whether Screen 1 provides a category filter bar to filter packages by 5-Star, 4-Star, or 3-Star."
+    },
+    {
+      "id": "CAT-015",
+      "title": "Categories | 15- Filter rooms by Board Type category (Positive)(P2)",
+      "module": "Categories",
+      "type": "Positive",
+      "priority": "P2",
+      "preconditions": "User is viewing room tables with Board Type filter visible.",
+      "steps": [
+        "Click the 'Board Type' filter control.",
+        "Select 'Breakfast'.",
+        "Observe filtered rate rows."
+      ],
+      "expected": "Only room rate rows offering 'Breakfast' are displayed across room categories."
+    }
+  ]
+}
